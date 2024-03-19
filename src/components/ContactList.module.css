@@ -1,26 +1,46 @@
 /* ContactList.module.css */
 
-.contact-list {
-    list-style: none;
+.contactList {
+    list-style-type: none;
     padding: 0;
 }
 
-.contact-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.contactItem {
+    display: flex;
+    /* Додаємо властивість display: flex */
+    justify-content: space-between;
+    /* Розташовуємо елементи контакту у ряд */
+    align-items: center;
+    /* Вирівнюємо елементи по вертикалі */
     margin-bottom: 10px;
     padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+        flex-direction: column;
 }
 
-.contact-item button {
-    background-color: #dc3545;
-    color: white;
+.contactItem:hover {
+    background-color: #f0f0f0;
+}
+
+.contactName {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.contactNumber {
+    color: #666;
+}
+
+.deleteButton {
+    background-color: #ff3333;
+    color: #fff;
     border: none;
-    padding: 5px 10px;
     border-radius: 3px;
+    padding: 5px 10px;
     cursor: pointer;
 }
 
-.contact-item button:hover {
-    background-color: #c82333;
+.deleteButton:hover {
+    background-color: #cc0000;
 }
