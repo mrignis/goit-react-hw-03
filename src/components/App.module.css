@@ -1,0 +1,32 @@
+
+/* App.module.css */
+
+.app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.app h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contactList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contactListItem {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contactListItem:hover {
+    background-color: #f0f0f0;
+}

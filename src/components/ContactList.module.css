@@ -1,0 +1,26 @@
+/* ContactList.module.css */
+
+.contact-list {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.contact-item button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.contact-item button:hover {
+    background-color: #c82333;
+}

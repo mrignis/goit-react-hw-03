@@ -1,0 +1,19 @@
+/* SearchBox.module.css */
+
+.searchBox {
+    margin: 10px 10px 10px 40px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 220px;
+}
+
+.searchInput {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
+.searchInput::placeholder {
+    color: #999;
+}
