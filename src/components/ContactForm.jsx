@@ -8,6 +8,7 @@ import styles from './ContactForm.module.css'; // імпортуємо CSS-мо�
 function ContactForm({ onSubmit }) {
   const initialValues = {
     name: '',
+    
     number: '',
   };
 

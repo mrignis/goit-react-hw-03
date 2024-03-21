@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ContactList from './components/ContactList';
 import SearchBox from './components/SearchBox';
 import ContactForm from './components/ContactForm';
+import { faPhone } from '@fortawesome/free-solid-svg-icons'; // Імпортуємо faPhone
 import styles from './components/App.module.css'; // імпорт CSS-модулю для стилізації App
 
 function App() {
@@ -34,11 +35,11 @@ function App() {
   };
 
   return (
-    <div className={styles.app}> {/* Використовуємо клас з CSS-модулю */}
+    <div className={styles.app}>
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <SearchBox value={searchQuery} onChange={setSearchQuery} />
-      <ContactList contacts={filteredContacts} onDeleteContact={deleteContact} />
+      <ContactList contacts={filteredContacts} onDeleteContact={deleteContact} faPhone={faPhone} /> {/* Передаємо faPhone до ContactList */}
     </div>
   );
 }

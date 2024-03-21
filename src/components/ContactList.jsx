@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faPhone } from '@fortawesome/free-solid-svg-icons'; // Імпортуємо необхідні іконки
+import { faUser, faPhone, faTrash } from '@fortawesome/free-solid-svg-icons'; // Імпортуємо необхідні іконки
 import styles from './ContactList.module.css'; // Імпортуємо CSS-модуль
 
 function ContactList({ contacts, onDeleteContact }) {
@@ -10,7 +10,7 @@ function ContactList({ contacts, onDeleteContact }) {
         <li key={contact.id} className={styles.contactItem}>
           <div>
             <span className={styles.contactName}>
-            <FontAwesomeIcon icon={faUser} /> {contact.name}
+              <FontAwesomeIcon icon={faUser} /> {contact.name}
             </span>
           </div>
           <div>
@@ -18,7 +18,9 @@ function ContactList({ contacts, onDeleteContact }) {
               <FontAwesomeIcon icon={faPhone} /> {contact.number}
             </span>
           </div>
-          <button className={styles.deleteButton} onClick={() => onDeleteContact(contact.id)}>Delete</button>
+          <button className={styles.deleteButton} onClick={() => onDeleteContact(contact.id)}>
+            <FontAwesomeIcon icon={faTrash} />
+          </button>
         </li>
       ))}
     </ul>
