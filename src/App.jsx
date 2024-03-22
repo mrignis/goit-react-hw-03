@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ContactList from './components/ContactList';
+import { Contact, ContactList } from './components/ContactList';
+
 import SearchBox from './components/SearchBox';
 import ContactForm from './components/ContactForm';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'; // Імпортуємо faPhone

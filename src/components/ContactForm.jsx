@@ -1,41 +1,38 @@
-// ContactForm.jsx
-
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import styles from './ContactForm.module.css'; // імпортуємо CSS-модуль
+import styles from './ContactForm.module.css'; // Імпортуємо CSS-модуль
 
 function ContactForm({ onSubmit }) {
-  const initialValues = {
-    name: '',
-    
-    number: '',
-  };
-
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters').max(50, 'Name must be at most 50 characters'),
-    number: Yup.string().required('Number is required').min(3, 'Number must be at least 3 characters').max(50, 'Number must be at most 50 characters'),
-  });
-
-  const handleSubmit = (values, { resetForm }) => {
-    onSubmit({ id: Math.random().toString(36).substr(2, 9), ...values }); // Генерація випадкового ідентифікатора
-    resetForm(); // Очищення форми після відправлення
-  };
-
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
-      <Form className={styles.contactForm}> {/* Додаємо клас з CSS-модуля */}
-        <div className={styles.formGroup}> {/* Додаємо клас з CSS-модуля */}
+    <Formik
+      initialValues={{ name: '', number: '' }}
+      validate={values => {
+        const errors = {};
+        if (!values.name) {
+          errors.name = 'Required';
+        }
+        if (!values.number) {
+          errors.number = 'Required';
+        }
+        return errors;
+      }}
+      onSubmit={(values, { resetForm }) => {
+        onSubmit(values);
+        resetForm();
+      }}
+    >
+      <Form className={styles.contactForm}>
+        <div className={styles.formGroup}>
           <label htmlFor="name">Name:</label>
-          <Field type="text" id="name" name="name" className={styles.inputField} /> {/* Додаємо клас з CSS-модуля */}
-          <ErrorMessage name="name" component="div" className={styles.error} /> {/* Додаємо клас з CSS-модуля */}
+          <Field type="text" id="name" name="name" className={styles.inputField} />
+          <ErrorMessage name="name" component="div" className={styles.error} />
         </div>
-        <div className={styles.formGroup}> {/* Додаємо клас з CSS-модуля */}
+        <div className={styles.formGroup}>
           <label htmlFor="number">Number:</label>
-          <Field type="text" id="number" name="number" className={styles.inputField} /> {/* Додаємо клас з CSS-модуля */}
-          <ErrorMessage name="number" component="div" className={styles.error} /> {/* Додаємо клас з CSS-модуля */}
+          <Field type="text" id="number" name="number" className={styles.inputField} />
+          <ErrorMessage name="number" component="div" className={styles.error} />
         </div>
-        <button type="submit" className={`${styles.submitButton} ${styles.btn}`}>Add contact</button> {/* Додаємо класи з CSS-модуля */}
+        <button type="submit" className={styles.submitButton}>Add Contact</button>
       </Form>
     </Formik>
   );
