@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Contact, ContactList } from './components/ContactList';
-
+import  ContactList  from './components/ContactList';
 import SearchBox from './components/SearchBox';
+import Contact from './components/Contact';
 import ContactForm from './components/ContactForm';
 import { faPhone } from '@fortawesome/free-solid-svg-icons'; // Імпортуємо faPhone
 import styles from './components/App.module.css'; // імпорт CSS-модулю для стилізації App
@@ -40,7 +40,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <SearchBox value={searchQuery} onChange={setSearchQuery} />
-      <ContactList contacts={filteredContacts} onDeleteContact={deleteContact} faPhone={faPhone} /> {/* Передаємо faPhone до ContactList */}
+      <ContactList key={filteredContacts.map(contact => contact.id).join()} contacts={filteredContacts} onDeleteContact={deleteContact} />
     </div>
   );
 }
