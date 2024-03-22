@@ -1,21 +1,18 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup'; // Імпортуємо Yup для валідації
 import styles from './ContactForm.module.css'; // Імпортуємо CSS-модуль
 
 function ContactForm({ onSubmit }) {
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required('Required').min(3, 'Name must be at least 3 characters').max(50, 'Name cannot exceed 50 characters'),
+    number: Yup.string().required('Required').min(3, 'Number must be at least 3 characters').max(50, 'Number cannot exceed 50 characters')
+  });
+
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
-      validate={values => {
-        const errors = {};
-        if (!values.name) {
-          errors.name = 'Required';
-        }
-        if (!values.number) {
-          errors.number = 'Required';
-        }
-        return errors;
-      }}
+      validationSchema={validationSchema} // Додаємо схему валідації Yup
       onSubmit={(values, { resetForm }) => {
         onSubmit(values);
         resetForm();
