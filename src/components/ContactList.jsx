@@ -5,8 +5,8 @@ import styles from './ContactList.module.css';
 function ContactList({ contacts, onDeleteContact }) {
   return (
     <ul className={styles.contactList}>
-      {contacts.map((contact, index) => (
-        <Contact key={index} contact={contact} onDeleteContact={onDeleteContact} />
+      {contacts.map(contact => (
+        <Contact key={contact.id} contact={contact} onDeleteContact={onDeleteContact} />
       ))}
     </ul>
   );

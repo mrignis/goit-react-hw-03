@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import  ContactList  from './components/ContactList';
+import ContactList from './components/ContactList';
 import SearchBox from './components/SearchBox';
-import Contact from './components/Contact';
 import ContactForm from './components/ContactForm';
-import { faPhone } from '@fortawesome/free-solid-svg-icons'; // Імпортуємо faPhone
-import styles from './components/App.module.css'; // імпорт CSS-модулю для стилізації App
+import { nanoid } from 'nanoid'; // Імпорт функції для генерації унікальних ідентифікаторів
+import { faPhone } from '@fortawesome/free-solid-svg-icons'; // Імпорт іконки телефону
+import styles from './components/App.module.css'; // Імпорт CSS-модулю для стилізації App
 
 function App() {
   const [contacts, setContacts] = useState(() => {
@@ -22,13 +22,16 @@ function App() {
   }, [contacts]);
 
   const [searchQuery, setSearchQuery] = useState('');
+  const [idCounter, setIdCounter] = useState(5); // Початкове значення лічильника ідентифікаторів
 
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const addContact = newContact => {
-    setContacts(prevContacts => [...prevContacts, newContact]);
+    const newContactWithId = { ...newContact, id: `id-${idCounter}` };
+    setContacts(prevContacts => [...prevContacts, newContactWithId]);
+    setIdCounter(prevCounter => prevCounter + 1); // Збільшуємо лічильник на одиницю
   };
 
   const deleteContact = id => {
@@ -40,7 +43,7 @@ function App() {
       <h1>Phonebook</h1>
       <ContactForm onSubmit={addContact} />
       <SearchBox value={searchQuery} onChange={setSearchQuery} />
-      <ContactList key={filteredContacts.map(contact => contact.id).join()} contacts={filteredContacts} onDeleteContact={deleteContact} />
+      <ContactList contacts={filteredContacts} onDeleteContact={deleteContact} />
     </div>
   );
 }
